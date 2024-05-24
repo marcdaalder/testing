@@ -1769,14 +1769,249 @@ library(tidyr)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGVfY3N2KGdlbl9maW5hbCwndGVzdGluZy9pbnRlbnNpdHkuY3N2JywgYXBwZW5kPUZBTFNFKVxuXG5gYGAifQ== -->
-<pre class="r"><code>write_csv(gen_final,&#39;testing/intensity.csv&#39;, append=FALSE)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2xvYWQgZGF0YVxuZmlsZXMgPC0gbGlzdC5maWxlcyhwYXR0ZXJuPScqLmNzdicpXG5kZl9saXN0IDwtIGxhcHBseShmaWxlcyxyZWFkX2NzdilcbmBgYCJ9 -->
+<pre class="r"><code>#load data
+files &lt;- list.files(pattern=&#39;*.csv&#39;)
+df_list &lt;- lapply(files,read_csv)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IENhbm5vdCBvcGVuIGZpbGUgZm9yIHdyaXRpbmc6XG4qICd0ZXN0aW5nL2ludGVuc2l0eS5jc3YnXG4ifQ== -->
-<pre><code>Error: Cannot open file for writing:
-* &#39;testing/intensity.csv&#39;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMjQwNCBDb2x1bW5zOiA1N1xu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICAgKDYpOiBTaXRlX0NvZGUsIFBPQ19Db2RlLCBOd2tfQ29kZSwgR2VuX0NvZGUsIEZ1ZWxfQ29kZSwgVGVjaF9Db2RlXG5kYmwgICg0OCk6IFRQMSwgVFAyLCBUUDMsIFRQNCwgVFA1LCBUUDYsIFRQNywgVFA4LCBUUDksIFRQMTAsIFRQMTEsIFRQMTIsIFRQMTMsIFRQMTQsIFQuLi5cbmxnbCAgICgyKTogVFA0OSwgVFA1MFxuZGF0ZSAgKDEpOiBUcmFkaW5nX0RhdGVcblxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cblJvd3M6IDIyMTMgQ29sdW1uczogNTdcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCIsXCJcbmNociAgICg2KTogU2l0ZV9Db2RlLCBQT0NfQ29kZSwgTndrX0NvZGUsIEdlbl9Db2RlLCBGdWVsX0NvZGUsIFRlY2hfQ29kZVxuZGJsICAoNDgpOiBUUDEsIFRQMiwgVFAzLCBUUDQsIFRQNSwgVFA2LCBUUDcsIFRQOCwgVFA5LCBUUDEwLCBUUDExLCBUUDEyLCBUUDEzLCBUUDE0LCBULi4uXG5sZ2wgICAoMik6IFRQNDksIFRQNTBcbmRhdGUgICgxKTogVHJhZGluZ19EYXRlXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG5Sb3dzOiAyNDcxIENvbHVtbnM6IDU3XG7ilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiLFwiXG5jaHIgICAoNik6IFNpdGVfQ29kZSwgUE9DX0NvZGUsIE53a19Db2RlLCBHZW5fQ29kZSwgRnVlbF9Db2RlLCBUZWNoX0NvZGVcbmRibCAgKDQ4KTogVFAxLCBUUDIsIFRQMywgVFA0LCBUUDUsIFRQNiwgVFA3LCBUUDgsIFRQOSwgVFAxMCwgVFAxMSwgVFAxMiwgVFAxMywgVFAxNCwgVC4uLlxubGdsICAgKDIpOiBUUDQ5LCBUUDUwXG5kYXRlICAoMSk6IFRyYWRpbmdfRGF0ZVxuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuUm93czogMjQxNSBDb2x1bW5zOiA1N1xu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICAgKDYpOiBTaXRlX0NvZGUsIFBPQ19Db2RlLCBOd2tfQ29kZSwgR2VuX0NvZGUsIEZ1ZWxfQ29kZSwgVGVjaF9Db2RlXG5kYmwgICg1MCk6IFRQMSwgVFAyLCBUUDMsIFRQNCwgVFA1LCBUUDYsIFRQNywgVFA4LCBUUDksIFRQMTAsIFRQMTEsIFRQMTIsIFRQMTMsIFRQMTQsIFQuLi5cbmRhdGUgICgxKTogVHJhZGluZ19EYXRlXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG5Sb3dzOiAyNTEzIENvbHVtbnM6IDU3XG7ilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiLFwiXG5jaHIgICAoNik6IFNpdGVfQ29kZSwgUE9DX0NvZGUsIE53a19Db2RlLCBHZW5fQ29kZSwgRnVlbF9Db2RlLCBUZWNoX0NvZGVcbmRibCAgKDQ4KTogVFAxLCBUUDIsIFRQMywgVFA0LCBUUDUsIFRQNiwgVFA3LCBUUDgsIFRQOSwgVFAxMCwgVFAxMSwgVFAxMiwgVFAxMywgVFAxNCwgVC4uLlxubGdsICAgKDIpOiBUUDQ5LCBUUDUwXG5kYXRlICAoMSk6IFRyYWRpbmdfRGF0ZVxuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuUm93czogMjQ0OSBDb2x1bW5zOiA1N1xu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICAgKDYpOiBTaXRlX0NvZGUsIFBPQ19Db2RlLCBOd2tfQ29kZSwgR2VuX0NvZGUsIEZ1ZWxfQ29kZSwgVGVjaF9Db2RlXG5kYmwgICg0OCk6IFRQMSwgVFAyLCBUUDMsIFRQNCwgVFA1LCBUUDYsIFRQNywgVFA4LCBUUDksIFRQMTAsIFRQMTEsIFRQMTIsIFRQMTMsIFRQMTQsIFQuLi5cbmxnbCAgICgyKTogVFA0OSwgVFA1MFxuZGF0ZSAgKDEpOiBUcmFkaW5nX0RhdGVcblxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cblJvd3M6IDI0NzQgQ29sdW1uczogNTdcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCIsXCJcbmNociAgICg2KTogU2l0ZV9Db2RlLCBQT0NfQ29kZSwgTndrX0NvZGUsIEdlbl9Db2RlLCBGdWVsX0NvZGUsIFRlY2hfQ29kZVxuZGJsICAoNDgpOiBUUDEsIFRQMiwgVFAzLCBUUDQsIFRQNSwgVFA2LCBUUDcsIFRQOCwgVFA5LCBUUDEwLCBUUDExLCBUUDEyLCBUUDEzLCBUUDE0LCBULi4uXG5sZ2wgICAoMik6IFRQNDksIFRQNTBcbmRhdGUgICgxKTogVHJhZGluZ19EYXRlXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG5Sb3dzOiAyNDYwIENvbHVtbnM6IDU3XG7ilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiLFwiXG5jaHIgICAoNik6IFNpdGVfQ29kZSwgUE9DX0NvZGUsIE53a19Db2RlLCBHZW5fQ29kZSwgRnVlbF9Db2RlLCBUZWNoX0NvZGVcbmRibCAgKDQ4KTogVFAxLCBUUDIsIFRQMywgVFA0LCBUUDUsIFRQNiwgVFA3LCBUUDgsIFRQOSwgVFAxMCwgVFAxMSwgVFAxMiwgVFAxMywgVFAxNCwgVC4uLlxubGdsICAgKDIpOiBUUDQ5LCBUUDUwXG5kYXRlICAoMSk6IFRyYWRpbmdfRGF0ZVxuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuUm93czogMjM4NSBDb2x1bW5zOiA1N1xu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICAgKDYpOiBTaXRlX0NvZGUsIFBPQ19Db2RlLCBOd2tfQ29kZSwgR2VuX0NvZGUsIEZ1ZWxfQ29kZSwgVGVjaF9Db2RlXG5kYmwgICg0OCk6IFRQMSwgVFAyLCBUUDMsIFRQNCwgVFA1LCBUUDYsIFRQNywgVFA4LCBUUDksIFRQMTAsIFRQMTEsIFRQMTIsIFRQMTMsIFRQMTQsIFQuLi5cbmxnbCAgICgyKTogVFA0OSwgVFA1MFxuZGF0ZSAgKDEpOiBUcmFkaW5nX0RhdGVcblxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cblJvd3M6IDI0NjMgQ29sdW1uczogNTdcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCIsXCJcbmNociAgICg2KTogU2l0ZV9Db2RlLCBQT0NfQ29kZSwgTndrX0NvZGUsIEdlbl9Db2RlLCBGdWVsX0NvZGUsIFRlY2hfQ29kZVxuZGJsICAoNDgpOiBUUDEsIFRQMiwgVFAzLCBUUDQsIFRQNSwgVFA2LCBUUDcsIFRQOCwgVFA5LCBUUDEwLCBUUDExLCBUUDEyLCBUUDEzLCBUUDE0LCBULi4uXG5sZ2wgICAoMik6IFRQNDksIFRQNTBcbmRhdGUgICgxKTogVHJhZGluZ19EYXRlXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG5Sb3dzOiAyNDE0IENvbHVtbnM6IDU3XG7ilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiLFwiXG5jaHIgICAoNik6IFNpdGVfQ29kZSwgUE9DX0NvZGUsIE53a19Db2RlLCBHZW5fQ29kZSwgRnVlbF9Db2RlLCBUZWNoX0NvZGVcbmRibCAgKDQ4KTogVFAxLCBUUDIsIFRQMywgVFA0LCBUUDUsIFRQNiwgVFA3LCBUUDgsIFRQOSwgVFAxMCwgVFAxMSwgVFAxMiwgVFAxMywgVFAxNCwgVC4uLlxubGdsICAgKDIpOiBUUDQ5LCBUUDUwXG5kYXRlICAoMSk6IFRyYWRpbmdfRGF0ZVxuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuUm93czogMjQ5OCBDb2x1bW5zOiA1N1xu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICAgKDYpOiBTaXRlX0NvZGUsIFBPQ19Db2RlLCBOd2tfQ29kZSwgR2VuX0NvZGUsIEZ1ZWxfQ29kZSwgVGVjaF9Db2RlXG5kYmwgICg0OCk6IFRQMSwgVFAyLCBUUDMsIFRQNCwgVFA1LCBUUDYsIFRQNywgVFA4LCBUUDksIFRQMTAsIFRQMTEsIFRQMTIsIFRQMTMsIFRQMTQsIFQuLi5cbmxnbCAgICgyKTogVFA0OSwgVFA1MFxuZGF0ZSAgKDEpOiBUcmFkaW5nX0RhdGVcblxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cblJvd3M6IDI0OTkgQ29sdW1uczogNTdcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCIsXCJcbmNociAgICg2KTogU2l0ZV9Db2RlLCBQT0NfQ29kZSwgTndrX0NvZGUsIEdlbl9Db2RlLCBGdWVsX0NvZGUsIFRlY2hfQ29kZVxuZGJsICAoNDgpOiBUUDEsIFRQMiwgVFAzLCBUUDQsIFRQNSwgVFA2LCBUUDcsIFRQOCwgVFA5LCBUUDEwLCBUUDExLCBUUDEyLCBUUDEzLCBUUDE0LCBULi4uXG5sZ2wgICAoMik6IFRQNDksIFRQNTBcbmRhdGUgICgxKTogVHJhZGluZ19EYXRlXG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG5Sb3dzOiAyMzQ0IENvbHVtbnM6IDU3XG7ilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiLFwiXG5jaHIgICAoNik6IFNpdGVfQ29kZSwgUE9DX0NvZGUsIE53a19Db2RlLCBHZW5fQ29kZSwgRnVlbF9Db2RlLCBUZWNoX0NvZGVcbmRibCAgKDQ4KTogVFAxLCBUUDIsIFRQMywgVFA0LCBUUDUsIFRQNiwgVFA3LCBUUDgsIFRQOSwgVFAxMCwgVFAxMSwgVFAxMiwgVFAxMywgVFAxNCwgVC4uLlxubGdsICAgKDIpOiBUUDQ5LCBUUDUwXG5kYXRlICAoMSk6IFRyYWRpbmdfRGF0ZVxuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuUm93czogMjUxNyBDb2x1bW5zOiA1N1xu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICAgKDYpOiBTaXRlX0NvZGUsIFBPQ19Db2RlLCBOd2tfQ29kZSwgR2VuX0NvZGUsIEZ1ZWxfQ29kZSwgVGVjaF9Db2RlXG5kYmwgICg0OCk6IFRQMSwgVFAyLCBUUDMsIFRQNCwgVFA1LCBUUDYsIFRQNywgVFA4LCBUUDksIFRQMTAsIFRQMTEsIFRQMTIsIFRQMTMsIFRQMTQsIFQuLi5cbmxnbCAgICgyKTogVFA0OSwgVFA1MFxuZGF0ZSAgKDEpOiBUcmFkaW5nX0RhdGVcblxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cblJvd3M6IDI0MjggQ29sdW1uczogNTdcbuKUgOKUgCBDb2x1bW4gc3BlY2lmaWNhdGlvbiDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbkRlbGltaXRlcjogXCIsXCJcbmNociAgICg2KTogU2l0ZV9Db2RlLCBQT0NfQ29kZSwgTndrX0NvZGUsIEdlbl9Db2RlLCBGdWVsX0NvZGUsIFRlY2hfQ29kZVxuZGJsICAoNTApOiBUUDEsIFRQMiwgVFAzLCBUUDQsIFRQNSwgVFA2LCBUUDcsIFRQOCwgVFA5LCBUUDEwLCBUUDExLCBUUDEyLCBUUDEzLCBUUDE0LCBULi4uXG5kYXRlICAoMSk6IFRyYWRpbmdfRGF0ZVxuXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuTmV3IG5hbWVzOlxu4oCiIGBgIC0+IGAuLi4zYFxu4oCiIGBgIC0+IGAuLi40YFxu4oCiIGBgIC0+IGAuLi41YFxu4oCiIGBgIC0+IGAuLi42YFxu4oCiIGBgIC0+IGAuLi43YFxu4oCiIGBgIC0+IGAuLi44YFxuIn0= -->
+<pre><code>Rows: 2404 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2213 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2471 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2415 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (50): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2513 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2449 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2474 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2460 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2385 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2463 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2414 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2498 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2499 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2344 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2517 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (48): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+lgl   (2): TP49, TP50
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2428 Columns: 57
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr   (6): Site_Code, POC_Code, Nwk_Code, Gen_Code, Fuel_Code, Tech_Code
+dbl  (50): TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11, TP12, TP13, TP14, T...
+date  (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+New names:
+• `` -&gt; `...3`
+• `` -&gt; `...4`
+• `` -&gt; `...5`
+• `` -&gt; `...6`
+• `` -&gt; `...7`
+• `` -&gt; `...8`</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogT25lIG9yIG1vcmUgcGFyc2luZyBpc3N1ZXMsIGNhbGwgYHByb2JsZW1zKClgIG9uIHlvdXIgZGF0YSBmcmFtZSBmb3IgZGV0YWlscywgZS5nLjpcbiAgZGF0IDwtIHZyb29tKC4uLilcbiAgcHJvYmxlbXMoZGF0KVxuIn0= -->
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMjM2MjEgQ29sdW1uczogOFxu4pSA4pSAIENvbHVtbiBzcGVjaWZpY2F0aW9uIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICAoNSk6IE5hbWUsIE1BUkMgREFBTERFUiwgLi4uNiwgLi4uNywgLi4uOFxuZGJsICAoMSk6IC4uLjVcbnRpbWUgKDIpOiAuLi4zLCAuLi40XG5cbuKEuSBVc2UgYHNwZWMoKWAgdG8gcmV0cmlldmUgdGhlIGZ1bGwgY29sdW1uIHNwZWNpZmljYXRpb24gZm9yIHRoaXMgZGF0YS5cbuKEuSBTcGVjaWZ5IHRoZSBjb2x1bW4gdHlwZXMgb3Igc2V0IGBzaG93X2NvbF90eXBlcyA9IEZBTFNFYCB0byBxdWlldCB0aGlzIG1lc3NhZ2UuXG5Sb3dzOiAyMzMzMCBDb2x1bW5zOiA1XG7ilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiLFwiXG5jaHIgICgxKTogVFBcbmRibCAgKDMpOiBnZW4sIHJlYWxfZmFjdG9yLCBpbnRlbnNpdHlcbmRhdGUgKDEpOiBUcmFkaW5nX0RhdGVcblxu4oS5IFVzZSBgc3BlYygpYCB0byByZXRyaWV2ZSB0aGUgZnVsbCBjb2x1bW4gc3BlY2lmaWNhdGlvbiBmb3IgdGhpcyBkYXRhLlxu4oS5IFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cbiJ9 -->
+<pre><code>Rows: 23621 Columns: 8
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr  (5): Name, MARC DAALDER, ...6, ...7, ...8
+dbl  (1): ...5
+time (2): ...3, ...4
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 23330 Columns: 5
+── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr  (1): TP
+dbl  (3): gen, real_factor, intensity
+date (1): Trading_Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2VuZXJhdGlvbiA8LSBiaW5kX3Jvd3MoZGZfbGlzdClcblxuXG5nZW5lcmF0aW9uX3RyYW5zID0gZ2F0aGVyKGdlbmVyYXRpb24sXCJUUDFcIixcIlRQMlwiLFwiVFAzXCIsXCJUUDRcIixcIlRQNVwiLFwiVFA2XCIsXCJUUDdcIixcIlRQOFwiLFwiVFA5XCIsXCJUUDEwXCIsXCJUUDExXCIsXCJUUDEyXCIsXCJUUDEzXCIsXCJUUDE0XCIsXCJUUDE1XCIsXCJUUDE2XCIsXCJUUDE3XCIsXCJUUDE4XCIsXCJUUDE5XCIsXCJUUDIwXCIsXCJUUDIxXCIsXCJUUDIyXCIsXCJUUDIzXCIsXCJUUDI0XCIsXCJUUDI1XCIsXCJUUDI2XCIsXCJUUDI3XCIsXCJUUDI4XCIsXCJUUDI5XCIsXCJUUDMwXCIsXCJUUDMxXCIsXCJUUDMyXCIsXCJUUDMzXCIsXCJUUDM0XCIsXCJUUDM1XCIsXCJUUDM2XCIsXCJUUDM3XCIsXCJUUDM4XCIsXCJUUDM5XCIsXCJUUDQwXCIsXCJUUDQxXCIsXCJUUDQyXCIsXCJUUDQzXCIsXCJUUDQ0XCIsXCJUUDQ1XCIsXCJUUDQ2XCIsXCJUUDQ3XCIsXCJUUDQ4XCIsXCJUUDQ5XCIsXCJUUDUwXCIsa2V5PSdUcmFkaW5nIFBlcmlvZCcsdmFsdWU9J2dlbicpXG5cblxuZ2VuX2ZpbmFsID0gbXV0YXRlKGdlbmVyYXRpb25fdHJhbnMsXG4gICAgICAgICAgICAgICAgICAgIGZhY3Rvcj1cbiAgICAgICAgICAgICAgICAgICAgICBpZmVsc2UoUE9DX0NvZGU9PSdITFkyMjAxJyxcbiAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShHZW5fQ29kZT09J2h1bnRseV8xXzQnLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShGdWVsX0NvZGU9PSdDb2FsJywwLjk5NTUsMC41OTQpLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShHZW5fQ29kZT09J2h1bnRseV9lM3AnLC40MDUsLjU2OSkpLFxuICAgICAgICAgICAgICAgICAgICAgICAgaWZlbHNlKChQT0NfQ29kZT09J0hXQTExMDEnICYgRnVlbF9Db2RlPT0nR2FzJykgfCBQT0NfQ29kZT09J0hXQTExMDInLC41MDIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWZlbHNlKFBPQ19Db2RlPT0nSlJEMTEwMScsLjU2NyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWZlbHNlKFBPQ19Db2RlPT0nS0FXMDExMScgfCBQT0NfQ29kZT09J0tBVzAxMTInLC4wNixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShQT0NfQ29kZT09J0tBVzExMDEnLC4xMjMsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWZlbHNlKFBPQ19Db2RlPT0nS0lOMDExMicsMS4wOTIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShQT0NfQ29kZT09J0tPRTExMDEnLC4zMDcsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZmVsc2UoUE9DX0NvZGU9PSdLUEExMTAxJywuNTAyLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShQT0NfQ29kZT09J01LRTExMDEnLC41NjcsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShQT0NfQ29kZT09J05BUDIyMDEnLC4wNjMsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZmVsc2UoUE9DX0NvZGU9PSdOQVAyMjAyJywuMDY0LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShQT0NfQ29kZT09J09LSTIyMDEnLC4zNDEsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShQT0NfQ29kZT09J1BQSTIyMDEnLC4wMzYsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZmVsc2UoUE9DX0NvZGU9PSdTRkQyMjAxJywuNTczLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShQT0NfQ29kZT09J1RISTIyMDEnLC4wNDUsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShQT0NfQ29kZT09J1RXSDAzMzEnICYgRnVlbF9Db2RlPT0nR2FzJywuNTczLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWZlbHNlKFBPQ19Db2RlPT0nV0hJMjIwMScsLjc2NixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZmVsc2UoUE9DX0NvZGU9PSdXS00yMjAxJyAmIEZ1ZWxfQ29kZT09J0dlbycsLjA1MixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWZlbHNlKFBPQ19Db2RlPT0nV1JLMDMzMScsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZmVsc2UoR2VuX0NvZGU9PSdyb3Rva2F3YScsLjA4NCwuMDU1KSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmZWxzZShQT0NfQ29kZT09J1dSSzIyMDEnLC4wMjEsMCkpKSkpKSkpKSkpKSkpKSkpKSkpLFxuICAgICAgICAgICAgICAgICAgIHJlYWxfZmFjdG9yID0gZmFjdG9yICogZ2VuKVxuXG5nZW5fZmluYWwgPSBzZWxlY3QoZ2VuX2ZpbmFsLFRyYWRpbmdfRGF0ZSwnVHJhZGluZyBQZXJpb2QnLGdlbixyZWFsX2ZhY3RvcilcblxuZ2VuX2ZpbmFsID0gZ2VuX2ZpbmFsICU+JSBcbiAgcmVuYW1lKFRQID0gJ1RyYWRpbmcgUGVyaW9kJykgJT4lXG4gIGFnZ3JlZ2F0ZShjYmluZChnZW4sIHJlYWxfZmFjdG9yKSB+IFRyYWRpbmdfRGF0ZSArIFRQLCBzdW0pICU+JVxuICBtdXRhdGUoaW50ZW5zaXR5ID0gcmVhbF9mYWN0b3IvZ2VuKVxuXG53cml0ZV9jc3YoZ2VuX2ZpbmFsLCcvVXNlcnMvbWFyY2RhYWxkZXIvdGVzdGluZy9pbnRlbnNpdHkuY3N2JywgYXBwZW5kPUZBTFNFKVxuXG4jPUlGKEIzNTg2Mj1cIkhMWTIyMDFcIixJRihEMzU4NjI9XCJodW50bHlfMV80XCIsSUYoRTM1ODYyPVwiQ29hbFwiLDAuOTk1NSwwLjU5NCksaWYoRDM1ODYyPVwiaHVudGx5X2UzcFwiLDAuNDA1LDAuNTY5KSksSUYoQjM1ODYyPVwiSFdBMTEwMlwiLDAuNTAyLElGKEIzNTg2Mj1cIkpSRDExMDFcIiwwLjU2NyxJRihPUihCMzU4NjI9XCJLQVcwMTExXCIsQjM1ODYyPVwiS0FXMDExMlwiKSwwLjA2LElGKEIzNTg2Mj1cIktBVzExMDFcIiwwLjEyMyxJRihCMzU4NjI9XCJLSU4wMTEyXCIsMS4wOTIsSWYoQjM1ODYyPVwiS09FMTEwMVwiLDAuMzA3LElGKEIzNTg2Mj1cIktQQTExMDFcIiwwLjUwMixJRihCMzU4NjI9XCJNS0UxMTAxXCIsMC41NjcsSUYoQjM1ODYyPVwiTkFQMjIwMVwiLDAuMDYzLElGKEIzNTg2Mj1cIk5BUDIyMDJcIiwwLjA2NCxJRihCMzU4NjI9XCJPS0kyMjAxXCIsMC4zNDEsSUYoQjM1ODYyPVwiUFBJMjIwMVwiLDAuMDM2LElGKEIzNTg2Mj1cIlNGRDIyMDFcIiwwLjU3MyxJRihCMzU4NjI9XCJUSEkyMjAxXCIsMC4wNDUsSUYoQU5EKEIzNTg2Mj1cIlRXSDAzMzFcIixFMzU4NjI9XCJHYXNcIiksMC41NzMsSUYoQjM1ODYyPVwiV0hJMjIwMVwiLDAuNzY2LElGKEFORChCMzU4NjI9XCJXS00yMjAxXCIsRTM1ODYyPVwiR2VvXCIpLDAuMDUyLElGKEIzNTg2Mj1cIldSSzAzMzFcIixJRihEMzU4NjI9XCJyb3Rva2F3YVwiLDAuMDg0LDAuMDU1KSxJRihCMzU4NjI9XCJXUksyMjAxXCIsMC4wMjEsMCkpKSkpKSkpKSkpKSkpKSkpKSkpXG5gYGAifQ== -->
+<pre class="r"><code>generation &lt;- bind_rows(df_list)
+
+
+generation_trans = gather(generation,&quot;TP1&quot;,&quot;TP2&quot;,&quot;TP3&quot;,&quot;TP4&quot;,&quot;TP5&quot;,&quot;TP6&quot;,&quot;TP7&quot;,&quot;TP8&quot;,&quot;TP9&quot;,&quot;TP10&quot;,&quot;TP11&quot;,&quot;TP12&quot;,&quot;TP13&quot;,&quot;TP14&quot;,&quot;TP15&quot;,&quot;TP16&quot;,&quot;TP17&quot;,&quot;TP18&quot;,&quot;TP19&quot;,&quot;TP20&quot;,&quot;TP21&quot;,&quot;TP22&quot;,&quot;TP23&quot;,&quot;TP24&quot;,&quot;TP25&quot;,&quot;TP26&quot;,&quot;TP27&quot;,&quot;TP28&quot;,&quot;TP29&quot;,&quot;TP30&quot;,&quot;TP31&quot;,&quot;TP32&quot;,&quot;TP33&quot;,&quot;TP34&quot;,&quot;TP35&quot;,&quot;TP36&quot;,&quot;TP37&quot;,&quot;TP38&quot;,&quot;TP39&quot;,&quot;TP40&quot;,&quot;TP41&quot;,&quot;TP42&quot;,&quot;TP43&quot;,&quot;TP44&quot;,&quot;TP45&quot;,&quot;TP46&quot;,&quot;TP47&quot;,&quot;TP48&quot;,&quot;TP49&quot;,&quot;TP50&quot;,key=&#39;Trading Period&#39;,value=&#39;gen&#39;)
+
+
+gen_final = mutate(generation_trans,
+                    factor=
+                      ifelse(POC_Code==&#39;HLY2201&#39;,
+                        ifelse(Gen_Code==&#39;huntly_1_4&#39;,
+                               ifelse(Fuel_Code==&#39;Coal&#39;,0.9955,0.594),
+                               ifelse(Gen_Code==&#39;huntly_e3p&#39;,.405,.569)),
+                        ifelse((POC_Code==&#39;HWA1101&#39; &amp; Fuel_Code==&#39;Gas&#39;) | POC_Code==&#39;HWA1102&#39;,.502,
+                               ifelse(POC_Code==&#39;JRD1101&#39;,.567,
+                                      ifelse(POC_Code==&#39;KAW0111&#39; | POC_Code==&#39;KAW0112&#39;,.06,
+                                             ifelse(POC_Code==&#39;KAW1101&#39;,.123,
+                                                    ifelse(POC_Code==&#39;KIN0112&#39;,1.092,
+                                                           ifelse(POC_Code==&#39;KOE1101&#39;,.307,
+                                                                  ifelse(POC_Code==&#39;KPA1101&#39;,.502,
+                                                                         ifelse(POC_Code==&#39;MKE1101&#39;,.567,
+                                                                                ifelse(POC_Code==&#39;NAP2201&#39;,.063,
+                                                                                       ifelse(POC_Code==&#39;NAP2202&#39;,.064,
+                                                                                              ifelse(POC_Code==&#39;OKI2201&#39;,.341,
+                                                                                                     ifelse(POC_Code==&#39;PPI2201&#39;,.036,
+                                                                                                            ifelse(POC_Code==&#39;SFD2201&#39;,.573,
+                                                                                                                   ifelse(POC_Code==&#39;THI2201&#39;,.045,
+                                                                                                                          ifelse(POC_Code==&#39;TWH0331&#39; &amp; Fuel_Code==&#39;Gas&#39;,.573,
+                                                                                                                                 ifelse(POC_Code==&#39;WHI2201&#39;,.766,
+                                                                                                                                        ifelse(POC_Code==&#39;WKM2201&#39; &amp; Fuel_Code==&#39;Geo&#39;,.052,
+                                                                                                                                               ifelse(POC_Code==&#39;WRK0331&#39;,
+                                                                                                                                                      ifelse(Gen_Code==&#39;rotokawa&#39;,.084,.055),
+                                                                                                                                                      ifelse(POC_Code==&#39;WRK2201&#39;,.021,0)))))))))))))))))))),
+                   real_factor = factor * gen)
+
+gen_final = select(gen_final,Trading_Date,&#39;Trading Period&#39;,gen,real_factor)
+
+gen_final = gen_final %&gt;% 
+  rename(TP = &#39;Trading Period&#39;) %&gt;%
+  aggregate(cbind(gen, real_factor) ~ Trading_Date + TP, sum) %&gt;%
+  mutate(intensity = real_factor/gen)
+
+write_csv(gen_final,&#39;/Users/marcdaalder/testing/intensity.csv&#39;, append=FALSE)
+
+#=IF(B35862=&quot;HLY2201&quot;,IF(D35862=&quot;huntly_1_4&quot;,IF(E35862=&quot;Coal&quot;,0.9955,0.594),if(D35862=&quot;huntly_e3p&quot;,0.405,0.569)),IF(B35862=&quot;HWA1102&quot;,0.502,IF(B35862=&quot;JRD1101&quot;,0.567,IF(OR(B35862=&quot;KAW0111&quot;,B35862=&quot;KAW0112&quot;),0.06,IF(B35862=&quot;KAW1101&quot;,0.123,IF(B35862=&quot;KIN0112&quot;,1.092,If(B35862=&quot;KOE1101&quot;,0.307,IF(B35862=&quot;KPA1101&quot;,0.502,IF(B35862=&quot;MKE1101&quot;,0.567,IF(B35862=&quot;NAP2201&quot;,0.063,IF(B35862=&quot;NAP2202&quot;,0.064,IF(B35862=&quot;OKI2201&quot;,0.341,IF(B35862=&quot;PPI2201&quot;,0.036,IF(B35862=&quot;SFD2201&quot;,0.573,IF(B35862=&quot;THI2201&quot;,0.045,IF(AND(B35862=&quot;TWH0331&quot;,E35862=&quot;Gas&quot;),0.573,IF(B35862=&quot;WHI2201&quot;,0.766,IF(AND(B35862=&quot;WKM2201&quot;,E35862=&quot;Geo&quot;),0.052,IF(B35862=&quot;WRK0331&quot;,IF(D35862=&quot;rotokawa&quot;,0.084,0.055),IF(B35862=&quot;WRK2201&quot;,0.021,0))))))))))))))))))))</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the
