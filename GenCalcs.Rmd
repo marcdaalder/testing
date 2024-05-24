@@ -54,11 +54,12 @@ gen_final = mutate(generation_trans,
 
 gen_final = select(gen_final,Trading_Date,'Trading Period',gen,real_factor)
 
-gen_final = gen_final %>% rename(TP = 'Trading Period')
+gen_final = gen_final %>% 
+  rename(TP = 'Trading Period') %>%
+  aggregate(cbind(gen, real_factor) ~ Trading_Date + TP, sum) %>%
+  mutate(intensity = real_factor/gen)
 
-gen_final = aggregate(cbind('gen', 'real_factor') ~ Trading_Date + TP, data=gen_final, sum)
-
-#write_csv(gen_final,append = FALSE)
+write_csv(gen_final,'/Users/marcdaalder/testing/intensity.csv', append=FALSE)
 
 #=IF(B35862="HLY2201",IF(D35862="huntly_1_4",IF(E35862="Coal",0.9955,0.594),if(D35862="huntly_e3p",0.405,0.569)),IF(B35862="HWA1102",0.502,IF(B35862="JRD1101",0.567,IF(OR(B35862="KAW0111",B35862="KAW0112"),0.06,IF(B35862="KAW1101",0.123,IF(B35862="KIN0112",1.092,If(B35862="KOE1101",0.307,IF(B35862="KPA1101",0.502,IF(B35862="MKE1101",0.567,IF(B35862="NAP2201",0.063,IF(B35862="NAP2202",0.064,IF(B35862="OKI2201",0.341,IF(B35862="PPI2201",0.036,IF(B35862="SFD2201",0.573,IF(B35862="THI2201",0.045,IF(AND(B35862="TWH0331",E35862="Gas"),0.573,IF(B35862="WHI2201",0.766,IF(AND(B35862="WKM2201",E35862="Geo"),0.052,IF(B35862="WRK0331",IF(D35862="rotokawa",0.084,0.055),IF(B35862="WRK2201",0.021,0))))))))))))))))))))
 ```
