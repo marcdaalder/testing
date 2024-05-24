@@ -1,0 +1,65 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+```
+
+
+```{r}
+#load data
+files <- list.files(pattern='*.csv')
+df_list <- lapply(files,read_csv)
+generation <- bind_rows(df_list)
+
+
+generation_trans = gather(generation,"TP1","TP2","TP3","TP4","TP5","TP6","TP7","TP8","TP9","TP10","TP11","TP12","TP13","TP14","TP15","TP16","TP17","TP18","TP19","TP20","TP21","TP22","TP23","TP24","TP25","TP26","TP27","TP28","TP29","TP30","TP31","TP32","TP33","TP34","TP35","TP36","TP37","TP38","TP39","TP40","TP41","TP42","TP43","TP44","TP45","TP46","TP47","TP48","TP49","TP50",key='Trading Period',value='gen')
+
+
+gen_final = mutate(generation_trans,
+                    factor=
+                      ifelse(POC_Code=='HLY2201',
+                        ifelse(Gen_Code=='huntly_1_4',
+                               ifelse(Fuel_Code=='Coal',0.9955,0.594),
+                               ifelse(Gen_Code=='huntly_e3p',.405,.569)),
+                        ifelse((POC_Code=='HWA1101' & Fuel_Code=='Gas') | POC_Code=='HWA1102',.502,
+                               ifelse(POC_Code=='JRD1101',.567,
+                                      ifelse(POC_Code=='KAW0111' | POC_Code=='KAW0112',.06,
+                                             ifelse(POC_Code=='KAW1101',.123,
+                                                    ifelse(POC_Code=='KIN0112',1.092,
+                                                           ifelse(POC_Code=='KOE1101',.307,
+                                                                  ifelse(POC_Code=='KPA1101',.502,
+                                                                         ifelse(POC_Code=='MKE1101',.567,
+                                                                                ifelse(POC_Code=='NAP2201',.063,
+                                                                                       ifelse(POC_Code=='NAP2202',.064,
+                                                                                              ifelse(POC_Code=='OKI2201',.341,
+                                                                                                     ifelse(POC_Code=='PPI2201',.036,
+                                                                                                            ifelse(POC_Code=='SFD2201',.573,
+                                                                                                                   ifelse(POC_Code=='THI2201',.045,
+                                                                                                                          ifelse(POC_Code=='TWH0331' & Fuel_Code=='Gas',.573,
+                                                                                                                                 ifelse(POC_Code=='WHI2201',.766,
+                                                                                                                                        ifelse(POC_Code=='WKM2201' & Fuel_Code=='Geo',.052,
+                                                                                                                                               ifelse(POC_Code=='WRK0331',
+                                                                                                                                                      ifelse(Gen_Code=='rotokawa',.084,.055),
+                                                                                                                                                      ifelse(POC_Code=='WRK2201',.021,0)))))))))))))))))))),
+                   real_factor = factor * gen)
+
+head(gen_final)
+
+#=IF(B35862="HLY2201",IF(D35862="huntly_1_4",IF(E35862="Coal",0.9955,0.594),if(D35862="huntly_e3p",0.405,0.569)),IF(B35862="HWA1102",0.502,IF(B35862="JRD1101",0.567,IF(OR(B35862="KAW0111",B35862="KAW0112"),0.06,IF(B35862="KAW1101",0.123,IF(B35862="KIN0112",1.092,If(B35862="KOE1101",0.307,IF(B35862="KPA1101",0.502,IF(B35862="MKE1101",0.567,IF(B35862="NAP2201",0.063,IF(B35862="NAP2202",0.064,IF(B35862="OKI2201",0.341,IF(B35862="PPI2201",0.036,IF(B35862="SFD2201",0.573,IF(B35862="THI2201",0.045,IF(AND(B35862="TWH0331",E35862="Gas"),0.573,IF(B35862="WHI2201",0.766,IF(AND(B35862="WKM2201",E35862="Geo"),0.052,IF(B35862="WRK0331",IF(D35862="rotokawa",0.084,0.055),IF(B35862="WRK2201",0.021,0))))))))))))))))))))
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
