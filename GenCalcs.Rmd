@@ -8,6 +8,7 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
 
 ```{r}
+#load packages
 library(readr)
 library(dplyr)
 library(tidyr)
@@ -21,10 +22,10 @@ files <- list.files(pattern='*.csv')
 df_list <- lapply(files,read_csv)
 generation <- bind_rows(df_list)
 
-
+#move TPs from columns to rows
 generation_trans = gather(generation,"TP1","TP2","TP3","TP4","TP5","TP6","TP7","TP8","TP9","TP10","TP11","TP12","TP13","TP14","TP15","TP16","TP17","TP18","TP19","TP20","TP21","TP22","TP23","TP24","TP25","TP26","TP27","TP28","TP29","TP30","TP31","TP32","TP33","TP34","TP35","TP36","TP37","TP38","TP39","TP40","TP41","TP42","TP43","TP44","TP45","TP46","TP47","TP48","TP49","TP50",key='Trading Period',value='gen')
 
-
+#assign intensity factors to each instance of generation and calculate emissions from each instance
 gen_final = mutate(generation_trans,
                     factor=
                       ifelse(POC_Code=='HLY2201',
@@ -52,29 +53,35 @@ gen_final = mutate(generation_trans,
                                                                                                                                                       ifelse(Gen_Code=='rotokawa',.084,.055),
                                                                                                                                                       ifelse(POC_Code=='WRK2201',.021,0)))))))))))))))))))),
                    real_factor = factor * gen)
-
+#tidy up df
 gen_final = select(gen_final,Trading_Date,'Trading Period',gen,real_factor)
 
+
+#condense generation instances into single entries for each TP on each date
 gen_final = gen_final %>% 
   rename(TP = 'Trading Period') %>%
   aggregate(cbind(gen, real_factor) ~ Trading_Date + TP, sum) %>%
   mutate(intensity = real_factor/gen) %>%
-  mutate(TP_sort = as.integer(sub('..',"",TP)))
+  mutate(TP_sort = as.integer(sub('..',"",TP))) %>%
+  mutate(time = ((TP_sort*30)-30)/60)
 
+#write file to csv
 write_csv(gen_final,'/Users/marcdaalder/testing/intensity.csv', append=FALSE)
 
+#point plot of all TPs/dates
 ggplot(data=gen_final, aes(x=TP_sort,y=intensity))+
   geom_point()
 
+#create df with average intensity for each TP
 gen_mean = gen_final %>%
-  aggregate(cbind(intensity, TP_sort) ~ TP, mean)
+  aggregate(cbind(intensity, TP_sort, time) ~ TP, mean)
 
-ggplot(data=gen_mean, aes(x=TP_sort,y=intensity))+
+#point plot of gen_mean
+ggplot(data=gen_mean, aes(x=time,y=intensity))+
   geom_point()
 
 
 
-#=IF(B35862="HLY2201",IF(D35862="huntly_1_4",IF(E35862="Coal",0.9955,0.594),if(D35862="huntly_e3p",0.405,0.569)),IF(B35862="HWA1102",0.502,IF(B35862="JRD1101",0.567,IF(OR(B35862="KAW0111",B35862="KAW0112"),0.06,IF(B35862="KAW1101",0.123,IF(B35862="KIN0112",1.092,If(B35862="KOE1101",0.307,IF(B35862="KPA1101",0.502,IF(B35862="MKE1101",0.567,IF(B35862="NAP2201",0.063,IF(B35862="NAP2202",0.064,IF(B35862="OKI2201",0.341,IF(B35862="PPI2201",0.036,IF(B35862="SFD2201",0.573,IF(B35862="THI2201",0.045,IF(AND(B35862="TWH0331",E35862="Gas"),0.573,IF(B35862="WHI2201",0.766,IF(AND(B35862="WKM2201",E35862="Geo"),0.052,IF(B35862="WRK0331",IF(D35862="rotokawa",0.084,0.055),IF(B35862="WRK2201",0.021,0))))))))))))))))))))
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
