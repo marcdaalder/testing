@@ -52,7 +52,7 @@ gen_final = mutate(generation_trans,
                                                                                                                                                ifelse(POC_Code=='WRK0331',
                                                                                                                                                       ifelse(Gen_Code=='rotokawa',.084,.053),
                                                                                                                                                       ifelse(POC_Code=='WRK2201',.018,
-                                                                                                                                                      ifelse(POC_Code=='TAB2201',.27,0)))))))))))))))))))),
+                                                                                                                                                      ifelse(POC_Code=='TAB2201',.27,0))))))))))))))))))))),
                    real_factor = factor * gen)
 #tidy up df
 gen_final = select(gen_final,Trading_Date,'Trading Period',gen,real_factor)
