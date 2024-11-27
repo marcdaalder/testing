@@ -66,8 +66,17 @@ gen_final = gen_final %>%
   mutate(TP_sort = as.integer(sub('..',"",TP))) %>%
   mutate(time = ((TP_sort*30)-30)/60)
 
+#remove excess columns
+gen_csv = gen_final %>%
+  mutate(
+    time = NULL,
+    TP_sort = NULL,
+    gen = NULL,
+    real_factor = NULL
+  )
+
 #write file to csv
-write_csv(gen_final,'/Users/marcdaalder/testing/intensity.csv', append=FALSE)
+write_csv(gen_csv,'/Users/marcdaalder/testing/intensity.csv', append=FALSE)
 
 #point plot of all TPs/dates
 ggplot(data=gen_final, aes(x=TP_sort,y=intensity))+
