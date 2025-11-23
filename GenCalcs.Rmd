@@ -34,7 +34,7 @@ gen_final = mutate(generation_trans,
                                ifelse(Gen_Code=='huntly_e3p',.4,.568)),
                         ifelse((POC_Code=='HWA1101' & Fuel_Code=='Gas') | POC_Code=='HWA1102',.683,
                                ifelse(POC_Code=='JRD1101',.548,
-                                      ifelse(POC_Code=='KAW0111' | POC_Code=='KAW0112' | POC_Code='KAW2201',.06,
+                                      ifelse(POC_Code=='KAW0111' | POC_Code=='KAW0112' | POC_Code=='KAW2201',.06,
                                              ifelse(POC_Code=='KAW1101',.123,
                                                     ifelse(POC_Code=='KIN0112',.364,
                                                            ifelse((POC_Code=='KOE1101' & Trading_Date<='2023-09-30'),.307,
@@ -76,7 +76,7 @@ gen_csv = gen_final %>%
   )
 
 #write file to csv
-write_csv(gen_csv,'/Users/marcdaalder/testing/intensity.csv', append=FALSE)
+write_csv(gen_csv,'/Users/marcdaalder/RStudio/testing/intensity.csv', append=FALSE)
 
 #point plot of all TPs/dates
 ggplot(data=gen_final, aes(x=TP_sort,y=intensity))+
