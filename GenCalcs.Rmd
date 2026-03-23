@@ -26,7 +26,7 @@ generation <- bind_rows(df_list)
 generation_trans = gather(generation,"TP1","TP2","TP3","TP4","TP5","TP6","TP7","TP8","TP9","TP10","TP11","TP12","TP13","TP14","TP15","TP16","TP17","TP18","TP19","TP20","TP21","TP22","TP23","TP24","TP25","TP26","TP27","TP28","TP29","TP30","TP31","TP32","TP33","TP34","TP35","TP36","TP37","TP38","TP39","TP40","TP41","TP42","TP43","TP44","TP45","TP46","TP47","TP48","TP49","TP50",key='Trading Period',value='gen')
 
 #assign intensity factors to each instance of generation and calculate emissions from each instance
-gen_final = mutate(generation_trans,
+gen_assigned = mutate(generation_trans,
                     factor=
                       ifelse(POC_Code=='HLY2201',
                         ifelse(Gen_Code=='huntly_1_4',
@@ -34,7 +34,7 @@ gen_final = mutate(generation_trans,
                                ifelse(Gen_Code=='huntly_e3p',.4,.568)),
                         ifelse((POC_Code=='HWA1101' & Fuel_Code=='Gas') | POC_Code=='HWA1102',.683,
                                ifelse(POC_Code=='JRD1101',.548,
-                                      ifelse(POC_Code=='KAW0111' | POC_Code=='KAW0112' | POC_Code=='KAW2201',.06,
+                                      ifelse(POC_Code=='KAW0111' | POC_Code=='KAW0112' | POC_Code=='KAW2201',.06, #Topp2 is not yet running, it will be KAW2201 KAW0 or similar. Should be zero carbon. Keep an eye on this. Comment date: 24 Feb 26
                                              ifelse(POC_Code=='KAW1101',.123,
                                                     ifelse(POC_Code=='KIN0112',.364,
                                                            ifelse((POC_Code=='KOE1101' & Trading_Date<='2023-09-30'),.307,
@@ -53,13 +53,15 @@ gen_final = mutate(generation_trans,
                                                                                                                                                       ifelse(Gen_Code=='rotokawa',.084,.053),
                                                                                                                                                       ifelse(POC_Code=='WRK2201',.018,
                                                                                                                                                       ifelse(POC_Code=='TAB2201',.08,0))))))))))))))))))))),
-                   real_factor = factor * gen)
+                   real_factor = factor * gen,
+                   gen = ifelse(Tech_Code=='BAT',0,gen)) #removes batteries from gen (numerator and denominator)
+
 #tidy up df
-gen_final = select(gen_final,Trading_Date,'Trading Period',gen,real_factor)
+gen_tidied = select(gen_assigned,Trading_Date,'Trading Period',gen,real_factor)
 
 
 #condense generation instances into single entries for each TP on each date
-gen_final = gen_final %>% 
+gen_final = gen_tidied %>% 
   rename(TP = 'Trading Period') %>%
   aggregate(cbind(gen, real_factor) ~ Trading_Date + TP, sum) %>%
   mutate(intensity = real_factor/gen) %>%
