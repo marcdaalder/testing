@@ -34,7 +34,7 @@ gen_assigned = mutate(generation_trans,
                                ifelse(Gen_Code=='huntly_e3p',.4,.568)),
                         ifelse((POC_Code=='HWA1101' & Fuel_Code=='Gas') | POC_Code=='HWA1102',.683,
                                ifelse(POC_Code=='JRD1101',.548,
-                                      ifelse(POC_Code=='KAW0111' | POC_Code=='KAW0112' | POC_Code=='KAW2201',.06, #Topp2 is not yet running, it will be KAW2201 KAW0 or similar. Should be zero carbon. Keep an eye on this. Comment date: 24 Feb 26
+                                      ifelse(POC_Code=='KAW0111' | POC_Code=='KAW0112' | POC_Code=='KAW2201',.06, #Topp2 can become zero carbon later but isn't currently. The KAW2201/TAOM gen includes Topp2 and Te Ahi o Maui.
                                              ifelse(POC_Code=='KAW1101',.123,
                                                     ifelse(POC_Code=='KIN0112',.364,
                                                            ifelse((POC_Code=='KOE1101' & Trading_Date<='2023-09-30'),.307,
